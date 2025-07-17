@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/head') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <title>
-        <%= foundListing.title %>
-    </title>
-</head>
-
-<body>
     <h2><%= foundListing.title %></h2>
     <p><%= foundListing.description %> </p>
     <p>Seller: <%= foundListing.seller.username %> </p>
@@ -18,7 +7,7 @@
     <img src="<%= foundListing.image %>" class="listing-img" alt="Image of <%= foundListing.title %>" />
 
     <!-- checks if the user id === seller id to show delete button -->
-    <% if(foundListing.seller._id.equals(user._id)){ %>
+    <% if (foundListing.seller._id.equals(user._id)) { %>
         <div class="action">
 
             <!-- putting and deleting -->
@@ -32,11 +21,6 @@
         </div>
         <% } %>
         <h3>Leave a Comment</h3>
-    <form action="/listings/<%= foundListing._id %>/comments" method="POST">
-        <textarea name="content" id="" required></textarea>
-        <button type="submit">Post Comment</button>
-    </form>
-    <h3>Leave a Comment</h3>
     <form action="/listings/<%= foundListing._id %>/comments" method="POST">
         <textarea name="content" id="" required></textarea>
         <button type="submit">Post Comment</button>
