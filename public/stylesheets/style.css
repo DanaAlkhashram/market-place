@@ -20,3 +20,12 @@ ul{
     margin: 0;
     padding: 0px;
 }
+
+.action{
+    display: flex;
+
+}
+
+#edit-button{
+width: 90vw;
+}

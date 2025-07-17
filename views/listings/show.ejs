@@ -11,26 +11,44 @@
 </head>
 
 <body>
-    <h2>
-        <%= foundListing.title %>
-    </h2>
-    <p>
-        <%= foundListing.description %>
-    </p>
-    <p>Seller: <%= foundListing.seller.username %>
-    </p>
-    <p><strong>
-            <%= foundListing.price %> BHD
-        </strong></p>
+    <h2><%= foundListing.title %></h2>
+    <p><%= foundListing.description %> </p>
+    <p>Seller: <%= foundListing.seller.username %> </p>
+    <p><strong> <%= foundListing.price %> BHD </strong></p>
     <img src="<%= foundListing.image %>" class="listing-img" alt="Image of <%= foundListing.title %>" />
 
     <!-- checks if the user id === seller id to show delete button -->
     <% if(foundListing.seller._id.equals(user._id)){ %>
-        <form action="/listings/<%= foundListing._id %>?_method=DELETE" method="POST">
-            <button type="submit"> Delete </button>
-        </form>
+        <div class="action">
+
+            <!-- putting and deleting -->
+            <form action="/listings/<%= foundListing._id %>?_method=DELETE" method="POST">
+                <button type="submit"> Delete </button>
+            </form>
+            <!-- get request -->
+            <a href="/listings/<%= foundListing._id %>/edit">
+                <button class="edit-button"> Edit </button>
+            </a>
+        </div>
         <% } %>
-    
+        <h3>Leave a Comment</h3>
+    <form action="/listings/<%= foundListing._id %>/comments" method="POST">
+        <textarea name="content" id="" required></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+    <h3>Leave a Comment</h3>
+    <form action="/listings/<%= foundListing._id %>/comments" method="POST">
+        <textarea name="content" id="" required></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+    <h3>Comments</h3>
+    <ul>
+        <% foundListing.comments.forEach((comment) => { %>
+            <li>
+                <%= comment.content %> - <%= comment.author.username %> 
+            </li>
+        <% }) %>
+    </ul>
 
 </body>
 
